@@ -19,6 +19,7 @@ package org.apache.beam.examples;
 
 import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.io.TextIO;
+import org.apache.beam.sdk.io.aws.options.AwsOptions;
 import org.apache.beam.sdk.metrics.Counter;
 import org.apache.beam.sdk.metrics.Distribution;
 import org.apache.beam.sdk.metrics.Metrics;
@@ -151,7 +152,7 @@ public class WordCount {
    *
    * <p>Inherits standard configuration options.
    */
-  public interface WordCountOptions extends PipelineOptions {
+  public interface WordCountOptions extends AwsOptions {
     final String DEFAULT_AWS_REGION = "us-west-2";
     /**
      * By default, this example reads from a public dataset containing the text of King Lear. Set
@@ -191,7 +192,6 @@ public class WordCount {
   public static void main(String[] args) {
     WordCountOptions options =
         PipelineOptionsFactory.fromArgs(args).withValidation().as(WordCountOptions.class);
-    options.setAwsRegion(WordCountOptions.DEFAULT_AWS_REGION);
 
     runWordCount(options);
   }

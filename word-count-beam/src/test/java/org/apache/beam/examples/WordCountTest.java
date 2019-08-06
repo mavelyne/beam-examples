@@ -23,6 +23,7 @@ import org.apache.beam.examples.WordCount.CountWords;
 import org.apache.beam.examples.WordCount.ExtractWordsFn;
 import org.apache.beam.examples.WordCount.FormatAsTextFn;
 import org.apache.beam.sdk.coders.StringUtf8Coder;
+import org.apache.beam.sdk.options.PipelineOptionsFactory;
 import org.apache.beam.sdk.testing.PAssert;
 import org.apache.beam.sdk.testing.TestPipeline;
 import org.apache.beam.sdk.testing.ValidatesRunner;
@@ -67,7 +68,8 @@ public class WordCountTest {
 
   static final String[] COUNTS_ARRAY = new String[] {"hi: 5", "there: 1", "sue: 2", "bob: 2"};
 
-  @Rule public TestPipeline p = TestPipeline.create();
+  @Rule public TestPipeline p = TestPipeline.fromOptions(
+          PipelineOptionsFactory.fromArgs(new String[]{"--output=out", "--awsRegion=us-west-2"}).withValidation().as(WordCount.WordCountOptions.class));
 
   /** Example test that tests a PTransform by using an in-memory input and inspecting the output. */
   @Test
