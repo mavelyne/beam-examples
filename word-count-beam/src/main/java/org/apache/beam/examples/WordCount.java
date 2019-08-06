@@ -170,6 +170,11 @@ public class WordCount {
     String getOutput();
 
     void setOutput(String value);
+
+    @Description("AWS Region")
+    @Default.String("us-west-2")
+    String getAwsRegion();
+    void setAwsRegion(String value);
   }
 
   static void runWordCount(WordCountOptions options) {
