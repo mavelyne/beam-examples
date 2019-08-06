@@ -579,7 +579,7 @@
       <version>0.10.2.2</version>
     </dependency>
 
-    <!-- AWS -->W
+    <!-- AWS -->
     <dependency>
       <groupId>org.apache.beam</groupId>
       <artifactId>beam-sdks-java-io-amazon-web-services</artifactId>
