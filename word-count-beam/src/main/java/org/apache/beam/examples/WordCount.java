@@ -153,7 +153,7 @@ public class WordCount {
    * <p>Inherits standard configuration options.
    */
   public interface WordCountOptions extends PipelineOptions {
-
+    final String DEFAULT_AWS_REGION = "us-west-2";
     /**
      * By default, this example reads from a public dataset containing the text of King Lear. Set
      * this option to choose a different input file or glob.
@@ -172,7 +172,6 @@ public class WordCount {
     void setOutput(String value);
 
     @Description("AWS Region")
-    @Default.String("us-west-2")
     String getAwsRegion();
     void setAwsRegion(String value);
   }
@@ -193,6 +192,7 @@ public class WordCount {
   public static void main(String[] args) {
     WordCountOptions options =
         PipelineOptionsFactory.fromArgs(args).withValidation().as(WordCountOptions.class);
+    options.setAwsRegion(WordCountOptions.DEFAULT_AWS_REGION);
 
     runWordCount(options);
   }
